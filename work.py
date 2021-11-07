@@ -9,8 +9,9 @@ logger = getLogger()
 def putHeroesToWork():
     treasureHunt = pyautogui.locateOnScreen("images/treasure_hunt.png")
     if(treasureHunt is not None):
-        pyautogui.click(treasureHunt)
-    searchUntilClick(["back_to_main_menu.png", "heroes.png"])
+        searchUntilClick(["heroes.png"])
+    else:
+        searchUntilClick(["back_to_main_menu.png", "heroes.png"])
     logger.info("Entered to workers panel")
     time.sleep(2)
     enableWorkers()
@@ -18,23 +19,22 @@ def putHeroesToWork():
 
 
 def enableWorkers():
-    pyautogui.moveTo(100, 100)
     while(pyautogui.locateOnScreen("images/treasure_hunt.png")):
         heroes = pyautogui.locateOnScreen("images/heroes.png")
         pyautogui.click(heroes)
-    currentXScroll = 200
-    currentYScroll = 200
-    pyautogui.scroll(100, currentXScroll, currentYScroll)
     workEnabledFound = True
+    pyautogui.moveTo(700,800)
+    pyautogui.mouseDown(button="left")
+    pyautogui.dragTo(700,200, 0.5, button="left")
+    pyautogui.mouseUp(button="left")
+    time.sleep(5)
     while workEnabledFound:
-        workButton = list(pyautogui.locateAllOnScreen("images/work.png"))
-        length = len(workButton)
+        workButtons = list(pyautogui.locateAllOnScreen("images/work.png"))
+        length = len(workButtons)
         logger.info(f"Found {length} to enable")
-        if len(workButton) > 0:
-            for button in workButton:
-                pyautogui.click(button, clicks=2)
-                currentYScroll += 50
-                pyautogui.scroll(100, currentXScroll, currentYScroll)
+        if len(workButtons) > 0:
+            for button in workButtons:
+                pyautogui.click(button)
                 time.sleep(1)
         else:
             workEnabledFound = False
