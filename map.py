@@ -7,7 +7,7 @@ logger = getLogger()
 def checkNewMap():
     newMap = pyautogui.locateOnScreen("images/new_map.png")
     if(newMap is not None):
-        pyautogui.click(newMap)
+        pyautogui.click(newMap, clicks=5)
         logger.info("New map unlocked!")
 
 
