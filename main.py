@@ -1,17 +1,16 @@
 import time
 import os
-from logger import getLogger
+import schedule
 from dotenv import load_dotenv
 from work import putHeroesToWork
-from map import backToMap, checkNewMap
+from map import checkNewMap
 
 load_dotenv()
-logger = getLogger()
+
+schedule.every(int(os.getenv("HEROES_TO_WORK_FREQUENCY_MINUTES"))).minutes.do(putHeroesToWork)
+schedule.every(int(os.getenv("NEW_MAP_CHECK_FREQUENCY_SECONDS"))).seconds.do(checkNewMap)
+#schedule.every(int(os.getenv("CHECK_ERRORS_FREQUENCY_SECONDS"))).seconds.do(checkNewErrors)
 
 while True:
-    # checkForErrors()
-    checkNewMap()
-    putHeroesToWork()
-    backToMap()
-    logger.info("Completed enabling workers")
-    time.sleep(int(os.getenv("HEROES_TO_WORK_FREQUENCY_MINUTES")) * 60)
+    schedule.run_pending()
+    time.sleep(1)

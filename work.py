@@ -2,6 +2,7 @@ import pyautogui
 import time
 from search import searchUntilClick
 from logger import getLogger
+from map import backToMap
 
 logger = getLogger()
 
@@ -16,6 +17,8 @@ def putHeroesToWork():
     time.sleep(2)
     enableWorkers()
     searchUntilClick(["back_to_main_menu_2.png", "treasure_hunt.png"])
+    backToMap()
+    logger.info("Completed enabling workers")
 
 
 def enableWorkers():
@@ -23,9 +26,9 @@ def enableWorkers():
         heroes = pyautogui.locateOnScreen("images/heroes.png")
         pyautogui.click(heroes)
     workEnabledFound = True
-    pyautogui.moveTo(700,800)
+    pyautogui.moveTo(700, 800)
     pyautogui.mouseDown(button="left")
-    pyautogui.dragTo(700,200, 0.5, button="left")
+    pyautogui.dragTo(700, 200, 0.5, button="left")
     pyautogui.mouseUp(button="left")
     time.sleep(5)
     while workEnabledFound:
