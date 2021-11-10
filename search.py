@@ -1,20 +1,27 @@
 import pyautogui
 import time
+from logger import getLogger
+
+logger = getLogger()
 
 
 def searchUntilClick(images):
-    previousImage = None
     for val in images:
-        t0 = time.time()
-        imageNotFound = True
         print(val)
-        while imageNotFound:
-            t1 = time.time()
-            if (t1 - t0 > 10 and previousImage is not None):
-                pyautogui.click(previousImage)
-                time.sleep(1)
-            image = pyautogui.locateCenterOnScreen("images/" + val)
-            if(image is not None):
-                previousImage = image
-                pyautogui.click(image, clicks=1)
-                imageNotFound = False
+        while (image := pyautogui.locateOnScreen("images/" + val)) is not None:
+            pyautogui.leftClick(image, duration=0.75)
+            pyautogui.moveTo(image.left - 100, image.top - 100)
+            time.sleep(2)
+
+
+def locateAnyEmptyChest():
+    if (pyautogui.locateOnScreen("images/blue1.png") is not None or
+        pyautogui.locateOnScreen("images/blue2.png") or
+        pyautogui.locateOnScreen("images/blue1.png") is not None or
+        pyautogui.locateOnScreen("images/blue2.png") or
+        pyautogui.locateOnScreen("images/blue1.png") is not None or
+            pyautogui.locateOnScreen("images/blue2.png")):
+        logger.info("Found empty chest")
+        return True
+    else:
+        return False
