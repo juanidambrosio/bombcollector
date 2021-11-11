@@ -16,5 +16,6 @@ def changeWorkersState(actionImage, heroeTypes, reverse):
         for heroeType in heroeTypes:
             if(pyautogui.locateOnScreen(heroeType)):
                 count += 1
-                pyautogui.leftClick(button, duration=0.5)
+                pyautogui.leftClick(button, duration=0.25)
+    pyautogui.move(50, 0)
     return count

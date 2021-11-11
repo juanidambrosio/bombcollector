@@ -30,25 +30,15 @@ def enableWorkers(enableBestHeroes):
     pyautogui.dragTo(700, 200, 0.5, button="left")
     pyautogui.mouseUp(button="left")
     time.sleep(5)
+    heroeTypes = ["images/common.png"]
+    if(enableBestHeroes):
+        heroeTypes = heroeTypes + ["images/rare.png", "images/superrare.png"]
     while workEnabledFound:
-        workButtons = list(pyautogui.locateAllOnScreen("images/work.png"))
-        superHeroes = []
-        if (not enableBestHeroes):
-            superHeroes = list(
-                pyautogui.locateAllOnScreen("images/superrare.png")) + list(pyautogui.locateAllOnScreen("images/rare.png"))
-        length = len(workButtons)
-        logger.info(f"Found {length} to enable")
-        if length > 0 and len(superHeroes) < 5:
-            for button in workButtons:
-                superHero = any(heroe.top - button.top ==
-                                18 for heroe in superHeroes)
-                if (superHero == True):
-                    logger.info("Avoided enabling super hero")
-                else:
-                    pyautogui.click(button)
-                time.sleep(1)
-        else:
+        result = changeWorkersState("images/work.png", heroeTypes, False)
+        if(result ==0):
             workEnabledFound = False
+        else:
+            time.sleep(1)
 
 
 def enableOnlySuperHeroes():
@@ -66,6 +56,6 @@ def enableOnlySuperHeroes():
         if(result == 0):
             commonToRestFound = False
         else:
-            time.sleep(2)
+            time.sleep(1)
     searchUntilClick(["back_to_main_menu_2.png", "treasure_hunt.png"])
     logger.info("Enabled super heroes!")
