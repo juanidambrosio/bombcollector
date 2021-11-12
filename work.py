@@ -13,10 +13,10 @@ def putHeroesToWork():
     enableBestHeroes = True
     if (treasureHunt is not None):
         pyautogui.click(treasureHunt)
+        time.sleep(5)
         if (locateAnyEmptyChest()):
             enableBestHeroes = False
     searchUntilClick(["back_to_main_menu.png", "heroes.png"])
-    logger.info("Entered to workers panel")
     time.sleep(2)
     enableWorkers(enableBestHeroes)
     searchUntilClick(["back_to_main_menu_2.png", "treasure_hunt.png"])
@@ -30,10 +30,11 @@ def enableWorkers(enableBestHeroes):
     pyautogui.dragTo(700, 200, 0.5, button="left")
     pyautogui.mouseUp(button="left")
     time.sleep(5)
-    heroeTypes = ["images/common.png"]
+    heroeTypes = ["common"]
     if(enableBestHeroes):
-        heroeTypes = heroeTypes + ["images/rare.png", "images/superrare.png"]
+        heroeTypes = heroeTypes + ["rare", "superrare"]
     while workEnabledFound:
+        logger.info("Enabling workers...")
         result = changeWorkersState("images/work.png", heroeTypes, False)
         if(result ==0):
             workEnabledFound = False
@@ -45,14 +46,15 @@ def enableOnlySuperHeroes():
     searchUntilClick(["back_to_main_menu.png", "heroes.png"])
     enableWorkers(True)
     pyautogui.moveTo(700, 400)
-    time.sleep(1)
+    time.sleep(2)
     pyautogui.mouseDown(button="left")
     pyautogui.dragTo(700, 1000, 0.5, button="left")
     pyautogui.mouseUp(button="left")
     time.sleep(5)
     commonToRestFound = True
     while commonToRestFound:
-        result = changeWorkersState("images/rest.png", ["images/common.png"], True)
+        logger.info("Putting workers to rest...")
+        result = changeWorkersState("images/rest.png", ["common"], True)
         if(result == 0):
             commonToRestFound = False
         else:
