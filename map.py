@@ -1,6 +1,6 @@
 import pyautogui
 from logger import getLogger
-import work
+from work import enableOnlySuperHeroes
 import time
 
 logger = getLogger()
@@ -12,4 +12,4 @@ def checkNewMap():
         pyautogui.click(newMap, clicks=2)
         logger.info("New map unlocked!")
         time.sleep(5)
-        work.enableOnlySuperHeroes()
+        enableOnlySuperHeroes()
