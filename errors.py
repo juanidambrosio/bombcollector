@@ -8,7 +8,7 @@ logger = getLogger()
 
 
 def checkNewErrors():
-    if((pyautogui.locateOnScreen("images/ok.png") is not None or pyautogui.locateOnScreen("images/ok2.png") is not None)):
+    if(pyautogui.locateOnScreen("images/ok.png") is not None):
         logger.info("Refreshing browser...")
         pyautogui.hotkey("ctrl", "f5")
         time.sleep(5)

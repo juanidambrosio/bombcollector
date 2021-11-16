@@ -21,11 +21,11 @@ def locateAnyEmptyChest():
     i = 0
     while i < 3:
         if (pyautogui.locateOnScreen("images/blue1.png") is not None or
-            pyautogui.locateOnScreen("images/blue2.png") or
+            pyautogui.locateOnScreen("images/blue2.png") is not None or
             pyautogui.locateOnScreen("images/yellow1.png") is not None or
-            pyautogui.locateOnScreen("images/yellow2.png") or
+            pyautogui.locateOnScreen("images/yellow2.png") is not None or
             pyautogui.locateOnScreen("images/violet1.png") is not None or
-                pyautogui.locateOnScreen("images/violet2.png")):
+                pyautogui.locateOnScreen("images/violet2.png") is not None):
             logger.info("Found empty chest")
             return True
     else:
