@@ -36,7 +36,7 @@ def enableWorkers(enableBestHeroes):
     while workEnabledFound:
         logger.info("Enabling workers...")
         result = changeWorkersState("images/work.png", heroeTypes, False)
-        if(result ==0):
+        if(result == 0):
             workEnabledFound = False
         else:
             time.sleep(1)
