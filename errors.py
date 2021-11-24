@@ -6,7 +6,6 @@ from logger import getLogger
 
 logger = getLogger()
 
-
 def checkNewErrors():
     if(pyautogui.locateOnScreen("images/ok.png") is not None or pyautogui.locateOnScreen("images/hanged.png")):
         logger.info("Refreshing browser...")
@@ -17,5 +16,5 @@ def checkNewErrors():
         if(not pyautogui.locateOnScreen("images/ok.png")):
             searchUntilClick(["treasure_hunt.png"])
         else:
-            time.sleep(int(os.getenv("REFRESH_BROWSER_COOLDOWN_MINUTES") * 60))
+            time.sleep(int(os.getenv("REFRESH_BROWSER_COOLDOWN_MINUTES")) * 60) 
             checkNewErrors()
