@@ -2,6 +2,7 @@ import pyautogui
 from logger import getLogger
 from work import enableOnlySuperHeroes
 import time
+from action import solveCaptcha
 
 logger = getLogger()
 
@@ -12,4 +13,5 @@ def checkNewMap():
         pyautogui.click(newMap, clicks=2)
         logger.info("New map unlocked!")
         time.sleep(5)
+        solveCaptcha()
         enableOnlySuperHeroes()

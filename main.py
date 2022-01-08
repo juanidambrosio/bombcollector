@@ -10,8 +10,8 @@ load_dotenv()
 
 schedule.every(int(os.getenv("HEROES_TO_WORK_FREQUENCY_MINUTES"))
                ).minutes.do(putHeroesToWork)
-schedule.every(int(os.getenv("NEW_MAP_CHECK_FREQUENCY_SECONDS"))
-               ).seconds.do(checkNewMap)
+# schedule.every(int(os.getenv("NEW_MAP_CHECK_FREQUENCY_SECONDS"))
+#                ).seconds.do(checkNewMap)
 schedule.every(int(os.getenv("CHECK_ERRORS_FREQUENCY_SECONDS"))
                ).seconds.do(checkNewErrors)
 
