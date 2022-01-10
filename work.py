@@ -14,7 +14,6 @@ def putHeroesToWork():
         pyautogui.click(treasureHunt)
         time.sleep(5)
     searchUntilClick(["back_to_main_menu.png", "heroes.png"])
-    solveCaptcha()
     all = pyautogui.locateOnScreen("images/all.png")
     print("Enabled workers")
     if (all is not None):

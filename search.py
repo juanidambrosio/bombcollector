@@ -7,7 +7,17 @@ logger = getLogger()
 
 def searchUntilClick(images):
     for val in images:
-        image = pyautogui.locateOnScreen("images/" + val)
-        print(image)
-        pyautogui.click(image, clicks=2)
-        time.sleep(1)
+        retries = 0
+        found = False
+        while retries < 3 and found is False:
+            image = pyautogui.locateOnScreen("images/" + val)
+            if image is not None:
+                print(image)
+                pyautogui.click(image)
+                time.sleep(1)
+                found = True
+            else:
+                retries += 1
+                if retries == 3:
+                    print("Image not found")
+    pyautogui.moveTo(100,100)
