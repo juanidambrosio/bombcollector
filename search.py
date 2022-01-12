@@ -12,12 +12,12 @@ def searchUntilClick(images):
         while retries < 3 and found is False:
             image = pyautogui.locateOnScreen("images/" + val)
             if image is not None:
-                print(image)
+                print(val)
                 pyautogui.click(image)
                 time.sleep(1)
                 found = True
             else:
                 retries += 1
                 if retries == 3:
-                    print("Image not found")
+                    print(val + " not found")
     pyautogui.moveTo(100,100)

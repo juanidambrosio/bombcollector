@@ -9,7 +9,7 @@ logger = getLogger()
 
 
 def checkNewErrors():
-    if pyautogui.locateOnScreen("images/ok.png") is not None:
+    if pyautogui.locateOnScreen("images/ok.png") is not None or pyautogui.locateOnScreen("images/ok_unstable.png"):
         logger.info("Refreshing browser...")
         pyautogui.hotkey("ctrl", "f5")
         time.sleep(10)
@@ -18,3 +18,5 @@ def checkNewErrors():
         searchUntilClick(["sign.png"])
         time.sleep(20)
         searchUntilClick(["treasure_hunt.png"])
+    else:
+        pyautogui.click(100,100, clicks=2)
