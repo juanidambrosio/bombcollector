@@ -19,4 +19,4 @@ def checkNewErrors():
         time.sleep(20)
         searchUntilClick(["treasure_hunt.png"])
     else:
-        pyautogui.click(100,100, clicks=2)
+        pyautogui.click(100, 100, clicks=2)

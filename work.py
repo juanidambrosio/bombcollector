@@ -14,11 +14,10 @@ def putHeroesToWork():
         pyautogui.click(treasureHunt)
         time.sleep(5)
     searchUntilClick(["back_to_main_menu.png", "heroes.png"])
-    all = pyautogui.locateOnScreen("images/all.png")
-    print("Enabled workers")
-    if (all is not None):
-        pyautogui.click(all, clicks=2)
+    time.sleep(5)
+    searchUntilClick(["all.png"])
     # enableWorkers()
+    time.sleep(2)
     searchUntilClick(["back_to_main_menu_2.png", "treasure_hunt.png"])
     logger.info("Completed enabling workers")
 
