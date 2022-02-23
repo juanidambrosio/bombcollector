@@ -15,8 +15,10 @@ def checkNewErrors():
         time.sleep(10)
         searchUntilClick(["connect_wallet.png"])
         time.sleep(5)
+        searchUntilClick(["metamask.png"])
+        time.sleep(5)
         searchUntilClick(["sign.png"])
-        time.sleep(20)
+        time.sleep(10)
         searchUntilClick(["treasure_hunt.png"])
     else:
         pyautogui.click(100, 100, clicks=2)
